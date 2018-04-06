@@ -40,7 +40,7 @@ if __name__ == '__main__':
     plt.ylim(out_res.min()-0.05,out_res.max()+0.05)
     plt.xlabel('Spatial compactness weight')
     plt.ylabel('Carbon sequestration potential')
-    plt.savefig(out_file+'quantity_result.png')
+    plt.savefig(file+'quantity_result.png')
     plt.show()
 #### drawing results maps
 ## Optimized zoning of agricultural afforestation with different
@@ -48,31 +48,35 @@ if __name__ == '__main__':
 ##    from importlib import reload
 ##    reload(tools)
 ##    from tools import plotRaster_class
-#### Optimized zoning of agricultural afforestation with different
-####    spatial compactness weights (Food decrease rate = 0.1)
-####    spatialRef = 'data/lucc2015.tif'
-####    record = 1
-####    tlabels = ['A','B','C','D','E']
-####    titles = ['{0}: Spatial compactness weight = {1}'.format(tlabels[i],weights[i])
-####              for i in range(len(weights))]
-####    i = 0
-####    for w in weights:
-####        asciifile = file+'weights_{0}_record_{1}_data.txt'.format(w,record)
-####        ff = asciiToRaster(asciifile,asciifile.replace('.txt','.tif'),spatialRef)
-####        data = toWgs(ff,ff.replace('.tif','_wgs.tif'))
-####        lucc = gdal.Open(data)
-####        arrayLucc = lucc.ReadAsArray()
-####        Geo = lucc.GetGeoTransform()
-####        minx,maxx = Geo[0],Geo[0]+Geo[1]*arrayLucc.shape[1]
-####        miny,maxy = Geo[3]+Geo[5]*arrayLucc.shape[0],Geo[3]
-####        
-####        subExtent = (116.9, 117.15, 40.5, 40.7)
-####    ##    plotRaster_class(data,{1:'Agricultural area',2:'afforestation area'})
-####        
-####        aa = plotRaster_class(data,{1:'Agricultural area',2:'Afforestation area'},
-####                         subplot=dict(extent=subExtent,scale=3,loc=4),
-####                              legend_loc = 'upper left',title = titles[i])
-####        i += 1
+
+    
+## Optimized zoning of agricultural afforestation with different
+##    spatial compactness weights (Food decrease rate = 0.1)
+    spatialRef = 'data/lucc2015.tif'
+    record = 1
+    tlabels = ['A','B','C','D','E']
+    titles = ['{0}: Spatial compactness weight = {1}'.format(tlabels[i],weights[i])
+              for i in range(len(weights))]
+    i = 0
+    for w in weights:
+        asciifile = file+'weights_{0}_record_{1}_data.txt'.format(w,record)
+        ff = asciiToRaster(asciifile,asciifile.replace('.txt','.tif'),spatialRef)
+        data = toWgs(ff,ff.replace('.tif','_wgs.tif'))
+        lucc = gdal.Open(data)
+        arrayLucc = lucc.ReadAsArray()
+        Geo = lucc.GetGeoTransform()
+        minx,maxx = Geo[0],Geo[0]+Geo[1]*arrayLucc.shape[1]
+        miny,maxy = Geo[3]+Geo[5]*arrayLucc.shape[0],Geo[3]
+        
+        subExtent = (116.9, 117.15, 40.5, 40.7)
+    ##    plotRaster_class(data,{1:'Agricultural area',2:'afforestation area'})
+        
+        aa = plotRaster_class(data,{1:'Agricultural area',2:'Afforestation area'},
+                         subplot=dict(extent=subExtent,scale=3,loc=4),
+                              legend_loc = 'upper left',title = titles[i])
+        i += 1
+
+        
 #### Optimized zoning of agricultural afforestation with different
 ####    food decrease rate (Spatial compactness weight = 1)
 ##    spatialRef = 'data/lucc2015.tif'
