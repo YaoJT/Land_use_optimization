@@ -1,0 +1,13 @@
+change the update method as zone,initilize particle with different statues
+, change_num = 200
+time:Fri Feb 09 17:32:38 2018
+weight:2.0
+particle_num:50
+*****particle parameters******
+init:1
+congitive:0.8
+social:0.1
+*****results******
+Area:{1: 6267, 2: 2333}
+Values:{'Food productive': 0.9500019522061677, 'Carbon sequestration': 0.19408068534937425, 'spatial compactness': 0.9829646548541876}
+Value:2.16000999701

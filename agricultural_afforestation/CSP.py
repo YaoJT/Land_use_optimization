@@ -7,7 +7,22 @@ if __name__ == '__main__':
     import math
     import tools
     from shutil import copyfile
+
     tools.cmap = cm.GMT_haxby
+
+##    plotRaster('./data/Raster/SOC_1km_wgs.tif',False,
+##               title='A: SOC level of current agricultural soil (0-20 cm)',show=True)
+##    plotRaster('./data/Raster/SOCS_1km_wgs.tif',False,
+##               title = 'B: Predicted SOC level after afforestation (0 - 20 cm)')
+##    plotRaster('./data/Raster/SOCP_1km_wgs.tif',False,
+##               title = 'C: Carbon sequestration potential of soil (0 - 20 cm)')
+##    plotRaster('./data/Raster/CPV_1km_wgs.tif',False,
+##               title = 'D: Carbon sequestration potential of plant')
+##    plotRaster('./data/Raster/CP_1km_wgs.tif',False,
+##               title = 'E: Carbon sequestration potential of soil and plant')
+
+##    plotRaster('./data/Raster/CP_1km_wgs.tif',False)
+
     spatialRef = './data/lucc2015.tif'
     arraylucc,info = asciiToArray('./data/100m/lucc2015.txt','int',True)
     arraylucc = (arraylucc==1)
@@ -115,6 +130,7 @@ if __name__ == '__main__':
                  [x for x in CPV_1000.flatten() if x > 0],
                  [x for x in CP_1000.flatten() if x > 0]])
     ax.set_xticklabels(['SOC','SOCS','CPS','CPV','CP'])
+    ax.set_ylabels('carbon sequestration (Gg C/grid)')
     plt.savefig('./data/Raster/CP_box.png')
     plt.show()
 
